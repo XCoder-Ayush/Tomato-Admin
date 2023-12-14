@@ -1,0 +1,14 @@
+<h1>Ayush Sharma</h1>
+
+
+<div class="container" *ngFor="let category of categoryList" >
+  <h1>{{category.name}}</h1>
+  <br>
+  <h3>{{category.count}}</h3>
+  <br>
+  <button (click)="openModal(category.name)">Click Me</button>
+  <br>
+  <br>
+</div>
+
+<app-category-modal [categoryName]="this.currentCategoryName" id="modal" class="hidden"></app-category-modal>
