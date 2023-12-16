@@ -1,1 +1,91 @@
-<p>products works!</p>
+<div class="mx-10 py-10">
+    <p class="align-middle">Dashboard > <span class="font-semibold">Product</span></p>
+</div>
+
+<div class="elative overflow-x-auto sm:rounded-lg mx-10 bg-white shadow">
+    <div class="flex justify-between">
+        <div class="flex align-middle bg-white-500 px-5 py-5 text-sm gap-6 ">
+            <div>
+                <select id="" class="bg-white-800 text-#0000ff-700 hover:text-black align-middle px-5 py-1 h-8 border border-#0000ff hover:border-transparent rounded">
+                    <option>United States</option>
+                    <option>Canada</option>
+                    <option>France</option>
+                    <option>Germany</option>
+                </select>
+            </div>
+            <div>
+                <input type="text" id="Type" aria-label="Your type" class="bg-white-800 align-middle px-5 py-1 h-8 text-#0000ff-700 hover:text-black  border border-#0000ff-500 hover:border-transparent rounded" value="" placeholder="Enter type">
+            </div>
+            <div class="align-middle px-5 py-1 h-8">
+                <label class="relative inline-flex items-center me-5 cursor-pointer">
+                    <input type="checkbox" value="" class="sr-only peer" checked>
+                    <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600"></div>
+                    <span class="ms-3 text-xs font-medium">Show only published</span>
+                  </label>
+            </div>
+        </div>
+        <div class=" align-middle text-right px-5 py-5">
+            <button class="button bg-red-500 px-5 py-1 h-8 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-sm">+ Create Product</button>
+        </div>
+    </div>
+</div>
+<div>
+<div class="relative overflow-x-auto sm:rounded-lg mx-10 my-10 shadow border-#0000ff-100">
+    <table class="w-full text-sm text-left rtl:text-right bg-white-800 ">
+        <thead class="text-xs text-black uppercase bg-neutral-100">
+            <tr>
+                <th scope="col" class="px-6 py-3 ">
+                    Product name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Description
+                </th>
+                <th scope="col" class="px-6 py-3 ">
+                    Category
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Created At
+                </th>
+                <th scope="col" class="px-6 py-3 ">
+                    Status
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Option
+                </th>
+            </tr>
+        </thead>
+        <tbody class="bg-white">
+            <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-200 border-white-150 dark:border-white-300 text-xs font-thin " *ngFor="let product of productList">
+                <th scope="col" class="px-6 py-3  font-normal ">
+                    {{product.name}}
+                </th>
+                <th scope="col" class="px-6 py-3 font-normal ">
+                    {{product.description}}
+                </th>
+                <th scope="col" class="px-6 py-3  font-normal ">
+                    {{product.category}}
+                </th>
+                <th scope="col" class="px-6 py-3 font-normal ">
+                    {{product.createdAt}}
+                </th>
+                <th scope="col" class="px-6 py-3 font-normal ">
+                    <div class="flex justify-center border-2 rounded border-green-300 bg-green-200 text-green-800 " *ngIf="product.status=='Published', else np">
+                        {{product.status}}
+                    </div>
+                    <ng-template #np>
+                        <div class="flex justify-center border-2 rounded border-red-300 bg-red-200 text-red-800 "  >
+                            {{product.status}}
+                        </div>
+                    </ng-template>
+                </th>
+                <th scope="col" class="px-6 py-3 font-normal ">
+                    <button class="text-red-900" (click)="openModal(product)">Edit</button>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</div>
+
+<app-product-modal [incomingProduct]="this.currentProduct" id="modal" class="hidden"></app-product-modal>
