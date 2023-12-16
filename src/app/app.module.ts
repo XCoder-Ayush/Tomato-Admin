@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
-import { DashboardComponent } from './components/home/dashboard/dashboard.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { CategoryModalComponent } from './components/categories/category-modal/category-modal.component';
 import { ProductsComponent } from './components/products/products.component';
@@ -21,7 +20,6 @@ import { ProductModalComponent } from './components/products/product-modal/produ
     AppComponent,
     AuthComponent,
     HomeComponent,
-    DashboardComponent,
     CategoriesComponent,
     CategoryModalComponent,
     ProductsComponent,

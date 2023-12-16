@@ -1,14 +1,60 @@
-<h1>Ayush Sharma</h1>
 
-
-<div class="container" *ngFor="let category of categoryList" >
-  <h1>{{category.name}}</h1>
-  <br>
-  <h3>{{category.count}}</h3>
-  <br>
-  <button (click)="openModal(category.name)">Click Me</button>
-  <br>
-  <br>
+<div class="mx-10 py-10">
+  <p class="align-middle">Dashboard > <span class="font-semibold">Category</span></p>
 </div>
+
+<div class="elative overflow-x-auto sm:rounded-lg mx-10 bg-white shadow">
+  <div class="flex justify-between">
+      <div class="flex align-middle bg-white-500 px-5 py-5 text-sm gap-6 ">
+          <div>
+              <input type="text" id="Type" aria-label="Your type" class="bg-white-800 align-middle px-5 py-1 h-8 text-#0000ff-700 hover:text-black  border border-#0000ff-500 hover:border-transparent rounded" value="" placeholder="Enter type">
+          </div>
+      </div>
+      <div class=" align-middle text-right px-5 py-5">
+          <button class="button bg-red-500 px-5 py-1 h-8 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-sm">+ Create Product</button>
+      </div>
+  </div>
+</div>
+<div>
+<div class="relative overflow-x-auto sm:rounded-lg mx-10 my-10 shadow border-#0000ff-100">
+  <table class="w-full text-sm text-left rtl:text-right bg-white-800 ">
+      <thead class="text-xs text-black uppercase bg-neutral-100">
+          <tr>
+              <th scope="col" class="px-6 py-3 ">
+                  Category name
+              </th>
+              <th scope="col" class="px-6 py-3 ">
+                 Created At
+              </th>
+              <th scope="col" class="px-6 py-3">
+                  Count
+              </th>
+              <th scope="col" class="px-6 py-3">
+                  Action
+              </th>
+          </tr>
+      </thead>
+      <tbody class="bg-white">
+          <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-200 border-white-150 dark:border-white-300 text-xs font-thin " *ngFor="let category of categoryList">
+              <th scope="col" class="px-6 py-3  font-normal ">
+                  {{category.name}}
+              </th>
+              <th scope="col" class="px-6 py-3 font-normal ">
+                  {{category.createdAt}}
+              </th>
+              <th scope="col" class="px-6 py-3 font-normal ">  
+                  {{category.count}}
+              </th>
+              <th scope="col" class="px-6 py-3 font-normal ">
+                  <button class="text-red-900" (click)="openModal(category.name)">Edit</button>
+              </th>
+          </tr>
+      </tbody>
+  </table>
+</div>
+
+</div>
+
+
 
 <app-category-modal [categoryName]="this.currentCategoryName" id="modal" class="hidden"></app-category-modal>
