@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Order } from 'src/app/models/orders.model';
+import { Order } from 'src/app/models/order.model';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
