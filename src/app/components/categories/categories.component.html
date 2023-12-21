@@ -29,9 +29,6 @@
               <th scope="col" class="px-6 py-3">
                   Count
               </th>
-              <th scope="col" class="px-6 py-3">
-                  Action
-              </th>
           </tr>
       </thead>
       <tbody class="bg-white">
@@ -45,9 +42,6 @@
               <th scope="col" class="px-6 py-3 font-normal ">  
                   {{category.count}}
               </th>
-              <th scope="col" class="px-6 py-3 font-normal ">
-                  <button class="text-red-900" (click)="openModal(category.name)">Edit</button>
-              </th>
           </tr>
       </tbody>
   </table>
@@ -58,3 +52,33 @@
 
 
 <app-category-modal [categoryName]="this.currentCategoryName" id="modal" class="hidden"></app-category-modal>
+
+
+<button (click)="g()">Open</button>
+<button (click)="f()">Close</button>
+<div id="gg" class="h-screen fixed top-0 bottom-0 overflow-hidden overflow-y-auto w-5/12 transition-transform ease-in-out duration-250 flex flex-col right-0 z-50 transform translate-x-full bg-neutral-100">
+    <div class="h-16 flex justify-between bg-white align-middle p-4">
+        <div class="my-auto ml-4 font-semibold "><span class="mr-4 text-gray-300">X</span>Category Info</div>
+        <div class="flex gap-2 mr-4 justify-end my-auto">
+            <button class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs">Create</button>
+            <button class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs">Cancel</button>
+        </div>
+    </div> 
+    <div class="m-6 bg-white border-#0000ff-800 rounded">
+        <div class="w-full p-4 border-b-2 border-gray-100">
+            Category info
+        </div>
+        <div class="w-full p-4">
+            <div>
+                <div class="mt-1 ">
+                    <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                    <div class="relative mt-2 rounded-md shadow-sm">
+                      <input type="text" name="price" id="price" class="overflow-x-hidden overflow-y-auto w-full h-10 rounded-md border-0 py-1 px-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

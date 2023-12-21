@@ -12,46 +12,73 @@ export class ProductsComponent {
   productList : Product[]=[
     {
       name: 'Burgiir',
-      description: 'Bread, Spicy',
-      createdAt: new Date(),
+      sales_disc: 10,
+      createdAt: '10.09.20',
       category: 'Veg',
-      status: 'Not Published'
+      status: 'Not Published',
+      price: 100,
+      stars: 0
     },
     {
       name: 'Burgiir',
-      description: 'Bread, Spicy',
-      createdAt: new Date(),
+      sales_disc: 10,
+      createdAt: '10.09.20',
       category: 'Veg',
-      status: 'Published'
+      status: 'Not Published',
+      price: 100,
+      stars: 0
     },
     {
       name: 'Burgiir',
-      description: 'Bread, Spicy',
-      createdAt: new Date(),
+      sales_disc: 10,
+      createdAt: '10.09.20',
       category: 'Veg',
-      status: 'Published'
+      status: 'Published',
+      price: 100,
+      stars: 0
     },
-    {
-      name: 'Burgiir',
-      description: 'Bread, Spicy',
-      createdAt: new Date(),
-      category: 'Veg',
-      status: 'Not Published'
-    },
-    {
-      name: 'Burgiir',
-      description: 'Bread, Spicy',
-      createdAt: new Date(),
-      category: 'Veg',
-      status: 'Published'
-    },
+    
   ]
   openModal(product : Product){
     const modal=document.querySelector('#modal') as HTMLElement;
-    // console.log(modal.classList);
+    console.log(modal.classList);
     modal.classList.remove('hidden')
-    // console.log(modal.classList);
+    console.log(modal.classList);
     this.currentProduct=product;
     // this.categoryNameEmmiter?.emit(categoryName)
+  }
+  f(){
+    const modal = document.querySelector('#gg') as HTMLElement;
+    console.log(modal.classList);
+    modal.classList.remove('translate-x-0')
+    console.log(modal.classList);
+  }
+  g(){
+    const modal = document.querySelector('#gg') as HTMLElement;
+    console.log(modal.classList);
+    modal.classList.add('translate-x-0')
+    console.log(modal.classList);
+  }
+
+  uploadImage(){
+    const imageUploadDiv = document.querySelector('#image-upload') as HTMLElement;
+    var fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.style.display = 'none';
+    imageUploadDiv.appendChild(fileInput);
+    fileInput.click();
+    fileInput.addEventListener('change', function () {
+      const files = fileInput.files as any;
+      if(files && files.length > 0){
+          var selectedFile = files[0];
+        if (selectedFile) {
+          alert('Selected file: ' + selectedFile.name);
+        }
+        imageUploadDiv.removeChild(fileInput);
+      }
+      else{
+        return;
+      }
+    });
   }
 }

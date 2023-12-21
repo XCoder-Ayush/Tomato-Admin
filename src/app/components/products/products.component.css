@@ -1,0 +1,22 @@
+/* .site-header-cart-side {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    overflow-y: auto;
+    width: 300px;
+    transition: -webkit-transform .25s ease;
+    transition: transform .25s ease;
+    transition: transform .25s ease,-webkit-transform .25s ease;
+    display: flex;
+    flex-direction: column;
+    right: 0;
+    z-index: 9999999;
+    -webkit-transform: translate3d(300px,0,0);
+    transform: translate3d(300px,0,0);
+}
+.site-header-cart-side.active {
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+} */

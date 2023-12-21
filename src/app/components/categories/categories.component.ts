@@ -49,4 +49,16 @@ export class CategoriesComponent {
     this.currentCategoryName=categoryName;
     // this.categoryNameEmmiter?.emit(categoryName)
   }
+  f(){
+    const modal = document.querySelector('#gg') as HTMLElement;
+    console.log(modal.classList);
+    modal.classList.remove('translate-x-0')
+    console.log(modal.classList);
+  }
+  g(){
+    const modal = document.querySelector('#gg') as HTMLElement;
+    console.log(modal.classList);
+    modal.classList.add('translate-x-0')
+    console.log(modal.classList);
+  }
 }
