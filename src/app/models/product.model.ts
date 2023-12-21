@@ -1,7 +1,9 @@
 export interface Product{
     name: string,
-    description: string,
-    createdAt: Date
+    sales_disc: number,
+    createdAt: string,
     category: string,
-    status:string
+    status:string,
+    price: number,
+    stars: number
 }

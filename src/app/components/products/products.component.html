@@ -34,20 +34,21 @@
     <table class="w-full text-sm text-left rtl:text-right bg-white-800 ">
         <thead class="text-xs text-black uppercase bg-neutral-100">
             <tr>
-                <th scope="col" class="px-6 py-3 ">
+                <th scope="col" class="px-6 py-3 ml-auto">
                     Product name
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Description
-                </th>
-                <th scope="col" class="px-6 py-3 ">
-                    Category
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Created At
+                    Sale
                 </th>
                 <th scope="col" class="px-6 py-3 ">
                     Status
+                </th>
+               
+                <th scope="col" class="px-6 py-3 ">
+                    Price
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Stars
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Option
@@ -56,30 +57,39 @@
         </thead>
         <tbody class="bg-white">
             <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-200 border-white-150 dark:border-white-300 text-xs font-thin " *ngFor="let product of productList">
-                <th scope="col" class="px-6 py-3  font-normal ">
-                    {{product.name}}
+                <th scope="col" class="pr-6 py-3  font-normal">
+                    <div class="grid grid-cols-2 align-middle -mx-4">
+                        <div class="ml-auto mr-auto ">
+                            <img class="aspect-square h-10 w-10 rounded-lg"src="../../../assets/food1.png">
+                        </div>
+                        <div class="my-auto mr-auto">
+                            {{product.name}}
+                        </div>
+                    </div>
+                   
                 </th>
                 <th scope="col" class="px-6 py-3 font-normal ">
-                    {{product.description}}
-                </th>
-                <th scope="col" class="px-6 py-3  font-normal ">
-                    {{product.category}}
+                    {{product.sales_disc}}
                 </th>
                 <th scope="col" class="px-6 py-3 font-normal ">
-                    {{product.createdAt}}
-                </th>
-                <th scope="col" class="px-6 py-3 font-normal ">
-                    <div class="flex justify-center border-2 rounded border-green-300 bg-green-200 text-green-800 " *ngIf="product.status=='Published', else np">
+                    <div class="flex justify-center border-2 rounded border-green-300 bg-green-200 text-green-800 text-xs w-24 " *ngIf="product.status=='Published', else np">
                         {{product.status}}
                     </div>
                     <ng-template #np>
-                        <div class="flex justify-center border-2 rounded border-red-300 bg-red-200 text-red-800 "  >
+                        <div class="flex justify-center border-2 rounded border-red-300 bg-red-200 text-red-800 text-xs w-24"  >
                             {{product.status}}
                         </div>
                     </ng-template>
                 </th>
+                
+                <th scope="col" class="px-6 py-3  font-normal ">
+                    {{product.price}}
+                </th>
                 <th scope="col" class="px-6 py-3 font-normal ">
-                    <button class="text-red-900" (click)="openModal(product)">Edit</button>
+                    {{product.stars}}
+                </th>
+                <th scope="col" class="px-6 py-3 font-normal ">
+                    <!-- <button class="text-red-900" data-modal-target="top-right-modal" data-modal-toggle="top-right-modal" (click)="openModal(product)">Edit</button> -->
                 </th>
             </tr>
         </tbody>
@@ -88,4 +98,147 @@
 
 </div>
 
-<app-product-modal [incomingProduct]="this.currentProduct" id="modal" class="hidden"></app-product-modal>
+<app-product-modal  [incomingProduct]="this.currentProduct" id="modal" class="hidden"></app-product-modal>
+
+<button (click)="g()">Open</button>
+<button (click)="f()">Close</button>
+<div id="gg" class="h-screen fixed top-0 bottom-0 overflow-hidden overflow-y-auto w-5/12 transition-transform ease-in-out duration-250 flex flex-col right-0 z-50 transform translate-x-full bg-neutral-100">
+    <div class="h-16 flex justify-between bg-white align-middle p-4">
+        
+        <div class="my-auto ml-4 font-semibold "><span class="mr-4 text-gray-300">X</span>Product Info</div>
+        <div class="flex gap-2 mr-4 justify-end my-auto">
+            <button class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs">Create</button>
+            <button class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs">Cancel</button>
+        </div>
+    </div> 
+    <div class="m-6 bg-white border-#0000ff-800 rounded">
+        <!-- <div class=" my-2 border-b-2 border-gray-100"><span class="ml-2 font-normal">
+            Product info
+        </span></div> -->
+        <div class="w-full p-4 border-b-2 border-gray-100">
+            Product info
+        </div>
+        <div class="w-full p-4">
+            <div class="grid grid-cols-2 gap-2">
+                <div>
+                    <div>
+                        <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Price</label>
+                        <div class="relative mt-2 rounded-md shadow-sm">
+                          <input type="text" name="price" id="price" class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                        </div>
+                      </div>
+                </div>
+                <div>
+                    <div>
+                        <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Price</label>
+                        <div class="relative mt-2 rounded-md shadow-sm">
+                            <label for="currency" class="sr-only">Currency</label>
+                            <select id="currency" name="currency" class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 appearance-none" >
+                              
+                              <option>USD-trump</option>
+                              <option>CAD-jf kennedy</option>
+                              <option>EUR-sinssss</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                <!-- Adjust the position of the dropdown icon here -->
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 12l-6-6-1 1 7 7 7-7-1-1-6 6z"/></svg>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            <div>
+                <div class="mt-5 mb-10">
+                    <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
+                    <div class="relative mt-2 rounded-md shadow-sm">
+                      <input type="text" name="price" id="price" class="overflow-x-hidden overflow-y-auto w-full h-16 rounded-md border-0 py-1 px-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="m-6 bg-white border-#0000ff-800 rounded">
+        <!-- <div class=" my-2 border-b-2 border-gray-100"><span class="ml-2 font-normal">
+            Product info
+        </span></div> -->
+        <div class="w-full p-4 border-b-2 border-gray-100">
+            Upload Image
+        </div>
+        <div class="w-full p-4">
+            <div class="h-24 w-24 bg-neutral-100 rounded transform transition-transform active:scale-90 hover:cursor-pointer  " id="image-upload"(click)="uploadImage()">
+                <!-- <input class="opacity-0 h-20 w-20" id="file_input" type="file"> -->
+                <div class="grid grid-rows-2 align-middle">
+                    <div class=" m-auto w-16  text-center  pt-6">+</div>
+                    <div class=" mx-auto w-16 text-center text-xs">Upload</div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="m-6 bg-white border-#0000ff-800 rounded">
+        <!-- <div class=" my-2 border-b-2 border-gray-100"><span class="ml-2 font-normal">
+            Product info
+        </span></div> -->
+        <div class="w-full p-4 border-b-2 border-gray-100">
+            Product info
+        </div>
+        <div class="w-full p-4">
+            <div class="grid grid-cols-2 gap-2">
+                <div>
+                    <div>
+                        <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Price</label>
+                        <div class="relative mt-2 rounded-md shadow-sm">
+                          <input type="text" name="price" id="price" class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                        </div>
+                      </div>
+                </div>
+                <div>
+                    <div>
+                        <label for="Cooking_time" class="block text-sm font-medium leading-6 text-gray-900">Cooking Time</label>
+                        <div class="relative mt-2 rounded-md shadow-sm">
+                          <input type="text" name="Cooking_time" id="Cooking_time" class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full p-4">
+            <div class="grid grid-cols-2 gap-2">
+                <div>
+                    <div>
+                        <label for="stars" class="block text-sm font-medium leading-6 text-gray-900">Stars</label>
+                        <div class="relative mt-2 rounded-md shadow-sm">
+                          <input type="text" name="stars" id="stars" class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                        </div>
+                      </div>
+                </div>
+                <div>
+                    <div>
+                        <label for="sale_perc" class="block text-sm font-medium leading-6 text-gray-900">On Sale(%)</label>
+                        <div class="relative mt-2 rounded-md shadow-sm">
+                          <input type="text" name="sale_perc" id="sale_perc" class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="m-6 bg-white border-#0000ff-800 rounded">
+        <div class="w-full p-4 border-b-2 border-gray-100">
+            Publishing
+        </div>
+        <div class="w-full p-4">
+            <label class="relative inline-flex items-center me-5 cursor-pointer">
+                <input type="checkbox" value="" class="sr-only peer" checked>
+                <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600"></div>
+                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Publish</span>
+            </label>
+        </div>
+    </div>
+
+    
+
+</div>
+
