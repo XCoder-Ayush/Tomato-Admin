@@ -128,13 +128,34 @@ export class OrdersComponent {
     // items: 'hey,babe' 
     // },
   ]
-  f(){
+
+  orderInModal:Order={
+    orderId:"bbb",
+    paymentType: '',
+    userId: '',
+    userName: 'asss',
+    amount:0,
+    status: '',
+    address: '',
+    phone: '',
+    items: [{
+      id:'',
+      name:'',
+      price:0,
+      quantity:0,
+      subtotal:0
+    }] 
+  };
+  
+
+  openModal(order:Order){
+    this.orderInModal=order;
     const modal = document.querySelector('#gg') as HTMLElement;
     console.log(modal.classList);
     modal.classList.remove('translate-x-0')
     console.log(modal.classList);
   }
-  g(){
+  closeModal(){
     const modal = document.querySelector('#gg') as HTMLElement;
     console.log(modal.classList);
     modal.classList.add('translate-x-0')
