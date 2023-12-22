@@ -39,21 +39,21 @@ export class ProductsComponent {
     },
     
   ]
-  openModal(product : Product){
-    const modal=document.querySelector('#modal') as HTMLElement;
-    console.log(modal.classList);
-    modal.classList.remove('hidden')
-    console.log(modal.classList);
-    this.currentProduct=product;
-    // this.categoryNameEmmiter?.emit(categoryName)
-  }
-  f(){
+  // openModal(product : Product){
+  //   const modal=document.querySelector('#modal') as HTMLElement;
+  //   console.log(modal.classList);
+  //   modal.classList.remove('hidden')
+  //   console.log(modal.classList);
+  //   this.currentProduct=product;
+  //   // this.categoryNameEmmiter?.emit(categoryName)
+  // }
+  closeModal(){
     const modal = document.querySelector('#gg') as HTMLElement;
     console.log(modal.classList);
     modal.classList.remove('translate-x-0')
     console.log(modal.classList);
   }
-  g(){
+  openModal(){
     const modal = document.querySelector('#gg') as HTMLElement;
     console.log(modal.classList);
     modal.classList.add('translate-x-0')

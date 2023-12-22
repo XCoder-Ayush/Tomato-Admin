@@ -1,4 +1,4 @@
-import { OrderItem } from "./orderItem.model";
+import { OrderItem } from 'src/app/models/orderitem.model'
 
 export interface Order {
 

@@ -11,11 +11,11 @@
                     value="" placeholder="Enter type">
             </div>
         </div>
-        <div class=" align-middle text-right px-5 py-5">
+        <!-- <div class=" align-middle text-right px-5 py-5">
             <button
                 class="button bg-red-500 px-5 py-1 h-8 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-sm">+
                 Create Product</button>
-        </div>
+        </div> -->
     </div>
 </div>
 
@@ -74,7 +74,8 @@
 </div>
 
 
-<!-- modal -->
+<!-- Inside Modal -->
+
 <div id="gg"
     class="h-screen fixed top-0 bottom-0 overflow-hidden overflow-y-auto w-5/12 transition-transform ease-in-out duration-250 flex flex-col right-0 z-50 transform translate-x-full bg-neutral-100" >
     <div class="h-16 flex justify-between bg-white align-middle p-4">
@@ -82,9 +83,7 @@
         <div class="my-auto ml-4 font-semibold"><span class="mr-4 text-gray-300 hover:cursor-pointer" (click)="closeModal()">X</span>Order Info</div>
         <div class="flex gap-2 mr-4 justify-end my-auto">
             <button
-                class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs">Create</button>
-            <button
-                class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs">Cancel</button>
+                class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs" (click)="closeModal()">Cancel</button>
         </div>
     </div>
     <!-- Order Info -->
@@ -100,8 +99,8 @@
                             <label for="order-id" class="block text-sm font-medium leading-6 text-gray-900">Order
                                 Id</label>
                             <div class="relative mt-2 rounded-md shadow-sm">
-                                <input type="text" name="order-id" id="order-id" value="{{}} orderInModal.orderId"
-                                    class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input type="text" name="order-id" id="order-id" [value]="orderInModal.orderId" disabled
+                                    class="block w-full rounded-md border-0 h-8 pr-4 text-center text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
                     </div>
@@ -111,8 +110,8 @@
                                 Type
                             </label>
                             <div class="relative mt-2 rounded-md shadow-sm">
-                                <input type="text" name="Cooking_time" id="Cooking_time" value="{{}} orderInModal.paymentType"
-                                    class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input type="text" name="Cooking_time" id="Cooking_time"  [value]="orderInModal.paymentType" disabled
+                                    class="block w-full rounded-md border-0 h-8 pr-4 text-center text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
                     </div>
@@ -124,8 +123,8 @@
                         <div>
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Amount</label>
                             <div class="relative mt-2 rounded-md shadow-sm">
-                                <input type="text" name="price" id="price" value="{{}} orderInModal.amount"
-                                    class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input type="text" name="price" id="price" [value]="orderInModal.amount" disabled
+                                    class="block w-full rounded-md border-0 h-8 pr-4 text-center text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
                     </div>
@@ -160,8 +159,8 @@
                         <div>
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
                             <div class="relative mt-2 rounded-md shadow-sm">
-                                <input type="text" name="price" id="price" [value]="orderInModal.userName"
-                                    class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input type="text" name="price" id="price" [value]="orderInModal.userName" disabled
+                                    class="block w-full rounded-md border-0 h-8 text-center pr-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
                     
@@ -169,8 +168,8 @@
                             <label for="Cooking_time" class="block text-sm font-medium leading-6 text-gray-900">Phone
                             </label>
                             <div class="relative mt-2 rounded-md shadow-sm">
-                                <input type="text" name="Cooking_time" id="Cooking_time" value="{{}} "
-                                    class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input type="text" name="Cooking_time" id="Cooking_time" [value]="orderInModal.phone" disabled
+                                    class="block w-full rounded-md border-0 h-8 text-center pr-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
                     
@@ -180,82 +179,84 @@
         <div class="w-full px-8 pt-2 pb-4">
             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">User ID</label>
             <div class="relative mt-2 rounded-md shadow-sm">
-                <input type="text" name="price" id="price" value="{{}} orderInModal.userId"
-                    class="overflow-x-hidden overflow-y-auto w-full h-8 rounded-md border-0 py-2 px-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <input type="text" name="price" id="price" [value]="orderInModal.userId" disabled
+                    class="overflow-x-hidden overflow-y-auto w-full h-8 text-center rounded-md border-0 py-2 px-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
             </div>
         </div>
         <div class="w-full px-8 pt-4 pb-8">
             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Address</label>
             <div class="relative mt-2 rounded-md shadow-sm">
-                <input type="text" name="price" id="price" value="{{}} orderInModal.address"
-                    class="overflow-x-hidden overflow-y-auto w-full h-8 rounded-md border-0 py-2 px-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <input type="text" name="price" id="price" [value]="orderInModal.address" disabled
+                    class="overflow-x-hidden overflow-y-auto w-full h-8 rounded-md text-center border-0 py-2 px-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
             </div>
         </div>
     </div>
     <!-- Items info -->
-    <div class="m-6 bg-white border-#0000ff-800 rounded">
+    <div class="m-6 bg-white border-#0000ff-800 rounded ">
         <div class="w-full p-4 border-b-2 border-gray-100">
             Item info
         </div>
-        <div class="items-container overflow-y-auto h-80" *ngFor="let orderItem of orderInModal.items">
-            <div class="w-full px-8 pb-1 pt-4">
-                <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Item ID</label>
-                <div class="relative mt-2 rounded-md shadow-sm">
-                    <input type="text" name="price" id="price" value="{{}} orderItem.id"
-                        class="overflow-x-hidden overflow-y-auto w-full h-8 rounded-md border-0 py-2 px-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        <div class="items-container overflow-hidden lg:overflow-auto scrollbar:w-1.5 scrollbar:h-1.5 scrollbar:bg-transparent scrollbar-track:!bg-slate-100 scrollbar-thumb:!rounded scrollbar-thumb:!bg-slate-300 scrollbar-track:!rounded dark:scrollbar-track:!bg-slate-500/[0.16] dark:scrollbar-thumb:!bg-slate-500/50 max-h-96 lg:supports-scrollbars:pr-2 lg:max-h-96">
+            <div class="h-80" *ngFor="let orderItem of orderInModal.items">
+                <div class="w-full px-8 pb-1 pt-4">
+                    <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Item ID</label>
+                    <div class="relative mt-2 rounded-md shadow-sm">
+                        <input type="text" name="price" id="price" [value]="orderItem.id" disabled
+                            class="overflow-x-hidden overflow-y-auto w-full h-8 rounded-md border-0 text-center py-2 px-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
                 </div>
-            </div>
-            <div class="w-full p-4">
                 <div class="w-full p-4">
-                    <div class="grid grid-cols-2 gap-2">
-                        <div>
+                    <div class="w-full p-4">
+                        <div class="grid grid-cols-2 gap-2">
                             <div>
-                                <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
-                                <div class="relative mt-2 rounded-md shadow-sm">
-                                    <input type="text" name="price" id="price" value="{{}} orderItem.name"
-                                        class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <div>
+                                    <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                                    <div class="relative mt-2 rounded-md shadow-sm">
+                                        <input type="text" name="price" id="price" [value]="orderItem.name" disabled
+                                            class="block w-full rounded-md border-0 h-8 text-center text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <label for="Cooking_time" class="block text-sm font-medium leading-6 text-gray-900">Price
+                                       </label>
+                                    <div class="relative mt-2 rounded-md shadow-sm">
+                                        <input type="text" name="Cooking_time" id="Cooking_time" [value]="orderItem.price" disabled
+                                            class="block w-full rounded-md border-0 h-8 text-center text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div>
+                    </div>
+                    <div class="w-full p-4">
+                        <div class="grid grid-cols-2 gap-2">
                             <div>
-                                <label for="Cooking_time" class="block text-sm font-medium leading-6 text-gray-900">Price
-                                   </label>
-                                <div class="relative mt-2 rounded-md shadow-sm">
-                                    <input type="text" name="Cooking_time" id="Cooking_time" value="{{}} orderItem.price"
-                                        class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <div>
+                                    <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Quantity</label>
+                                    <div class="relative mt-2 rounded-md shadow-sm">
+                                        <input type="text" name="price" id="price" [value]="orderItem.quantity" disabled
+                                            class="block w-full rounded-md border-0 h-8 text-center text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <label for="Cooking_time" class="block text-sm font-medium leading-6 text-gray-900">Subtotal
+                                    </label>
+                                    <div class="relative mt-2 rounded-md shadow-sm">
+                                        <input type="text" name="Cooking_time" id="Cooking_time" [value]="orderItem.subtotal" disabled
+                                            class="block w-full rounded-md border-0 h-8 text-center text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="w-full p-4">
-                    <div class="grid grid-cols-2 gap-2">
-                        <div>
-                            <div>
-                                <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Quantity</label>
-                                <div class="relative mt-2 rounded-md shadow-sm">
-                                    <input type="text" name="price" id="price" value="{{}} orderItem.quantity"
-                                        class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <label for="Cooking_time" class="block text-sm font-medium leading-6 text-gray-900">Subtotal
-                                </label>
-                                <div class="relative mt-2 rounded-md shadow-sm">
-                                    <input type="text" name="Cooking_time" id="Cooking_time" value="{{}} orderItem.subtotal"
-                                        class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="px-8">
+                    <hr class="h-px my-2 bg-gray-200 border-0">
                 </div>
-            </div>
-            <div class="px-8">
-                <hr class="h-px my-2 bg-gray-200 border-0">
-            </div>
+            </div>    
         </div>
         
     </div>

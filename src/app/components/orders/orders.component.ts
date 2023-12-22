@@ -46,6 +46,13 @@ export class OrdersComponent {
       price:300,
       quantity:2,
       subtotal:600
+    },
+    {
+      id:'2',
+      name:'Burger',
+      price:250,
+      quantity:3,
+      subtotal:750
     }] 
     },
     {
@@ -152,13 +159,13 @@ export class OrdersComponent {
     this.orderInModal=order;
     const modal = document.querySelector('#gg') as HTMLElement;
     console.log(modal.classList);
-    modal.classList.remove('translate-x-0')
+    modal.classList.remove('translate-x-full')
     console.log(modal.classList);
   }
   closeModal(){
     const modal = document.querySelector('#gg') as HTMLElement;
     console.log(modal.classList);
-    modal.classList.add('translate-x-0')
+    modal.classList.add('translate-x-full')
     console.log(modal.classList);
   }
 

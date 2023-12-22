@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class=" align-middle text-right px-5 py-5">
-            <button class="button bg-red-500 px-5 py-1 h-8 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-sm">+ Create Product</button>
+            <button class="button bg-red-500 px-5 py-1 h-8 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-sm" (click)="openModal()">+ Create Product</button>
         </div>
     </div>
 </div>
@@ -51,13 +51,13 @@
                     Stars
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Option
+                    Actions
                 </th>
             </tr>
         </thead>
         <tbody class="bg-white">
             <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-200 border-white-150 dark:border-white-300 text-xs font-thin " *ngFor="let product of productList">
-                <th scope="col" class="pr-6 py-3  font-normal">
+                <td scope="col" class="pr-6 py-3  font-normal">
                     <div class="grid grid-cols-2 align-middle -mx-4">
                         <div class="ml-auto mr-auto ">
                             <img class="aspect-square h-10 w-10 rounded-lg"src="../../../assets/food1.png">
@@ -67,11 +67,11 @@
                         </div>
                     </div>
                    
-                </th>
-                <th scope="col" class="px-6 py-3 font-normal ">
+                </td>
+                <td scope="col" class="px-6 py-3 font-normal ">
                     {{product.sales_disc}}
-                </th>
-                <th scope="col" class="px-6 py-3 font-normal ">
+                </td>
+                <td scope="col" class="px-6 py-3 font-normal ">
                     <div class="flex justify-center border-2 rounded border-green-300 bg-green-200 text-green-800 text-xs w-24 " *ngIf="product.status=='Published', else np">
                         {{product.status}}
                     </div>
@@ -80,17 +80,17 @@
                             {{product.status}}
                         </div>
                     </ng-template>
-                </th>
+                </td>
                 
-                <th scope="col" class="px-6 py-3  font-normal ">
+                <td scope="col" class="px-6 py-3  font-normal ">
                     {{product.price}}
-                </th>
-                <th scope="col" class="px-6 py-3 font-normal ">
+                </td>
+                <td scope="col" class="px-6 py-3 font-normal ">
                     {{product.stars}}
-                </th>
-                <th scope="col" class="px-6 py-3 font-normal ">
-                    <!-- <button class="text-red-900" data-modal-target="top-right-modal" data-modal-toggle="top-right-modal" (click)="openModal(product)">Edit</button> -->
-                </th>
+                </td>
+                <td scope="col" class="px-6 py-3 font-normal ">
+                    <button class="text-red-900 ml-3" (click)="openModal()">Edit</button>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -98,17 +98,17 @@
 
 </div>
 
-<app-product-modal  [incomingProduct]="this.currentProduct" id="modal" class="hidden"></app-product-modal>
+<!-- <app-product-modal  [incomingProduct]="this.currentProduct" id="modal" class="hidden"></app-product-modal> -->
 
-<button (click)="g()">Open</button>
-<button (click)="f()">Close</button>
+<!-- Product Modal  -->
+
 <div id="gg" class="h-screen fixed top-0 bottom-0 overflow-hidden overflow-y-auto w-5/12 transition-transform ease-in-out duration-250 flex flex-col right-0 z-50 transform translate-x-full bg-neutral-100">
     <div class="h-16 flex justify-between bg-white align-middle p-4">
         
-        <div class="my-auto ml-4 font-semibold "><span class="mr-4 text-gray-300">X</span>Product Info</div>
+        <div class="my-auto ml-4 font-semibold "><span (click)="closeModal()" class="mr-4 hover:cursor-pointer text-gray-300">X</span>Product Info</div>
         <div class="flex gap-2 mr-4 justify-end my-auto">
             <button class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs">Create</button>
-            <button class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs">Cancel</button>
+            <button class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs" (click)="closeModal()">Cancel</button>
         </div>
     </div> 
     <div class="m-6 bg-white border-#0000ff-800 rounded">
