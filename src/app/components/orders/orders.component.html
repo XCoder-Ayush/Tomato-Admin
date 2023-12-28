@@ -57,8 +57,8 @@
                     <td scope="col" class="px-6 py-3 font-normal ">
                         <select id="order-statuses-{{order.orderId}}" (change)="changeOrderStatus(order)"
                             class="border-2 rounded border-green-300 bg-green-200 text-green-800 text-xs w-30 px-2 py-1">
-                            <option selected>Placed</option>
-                            <option *ngFor="let status of statuses" value="{{status.eventName}}">{{status.placeholder}}
+                            <!-- <option selected>Placed</option> -->
+                            <option #select *ngFor="let status of statuses" [attr.selected]="isSelected(order,select) ? true : null" value="{{status.eventName}}">{{status.placeholder}}
                             </option>
                         </select>
                     </td>
