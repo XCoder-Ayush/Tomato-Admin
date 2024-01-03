@@ -17,14 +17,15 @@ export class OrdersComponent implements OnInit {
       console.log(orders);
       this.orderList=orders
     })
-      this.socketService.getPlacedOrder().subscribe((order)=>{
-        console.log(order);
-        // Append to DOM
-        console.log('Before Appending Order');        
-        this.orderList.push(order)
-        console.log(this.orderList);
+   
+     this.socketService.getPlacedOrder().subscribe((order)=>{
+         console.log(order);
+         // Append to DOM
+         console.log('Before Appending Order');        
+         this.orderList.push(order)
+         console.log(this.orderList);
         
-      })
+       })
       
       // this.socketService.getOrderStatusUpdates().subscribe((data) => {
       //   // This will only and only listen to the event when order is placed
@@ -47,7 +48,8 @@ export class OrdersComponent implements OnInit {
 
   currentOrder?: Order;
   isSelected(order: Order,element : any){
-    this.changeOrderStatus(order);
+    // this.changeOrderStatus(order);
+	this.renderOrderStatus(order);
     return element.value==order.status;
   }
   statuses: any = [
@@ -111,9 +113,7 @@ export class OrdersComponent implements OnInit {
     modal.classList.add("translate-x-full");
     console.log(modal.classList);
   }
-
-  changeOrderStatus(order: Order) {
-    // Transactional, Ensure Later
+  renderOrderStatus(order:Order){
     const selectElement = document.querySelector(
       `#order-statuses-${order.orderId}`
     ) as HTMLSelectElement;
@@ -184,8 +184,16 @@ export class OrdersComponent implements OnInit {
           `#order-statuses-${order.orderId}`
         ) as HTMLElement
       ).classList.remove("text-red-800");
-    }
-
+    }  
+  }
+  changeOrderStatus(order: Order) {
+    // Transactional, Ensure Later
+	const selectElement = document.querySelector(
+      `#order-statuses-${order.orderId}`
+    ) as HTMLSelectElement;
+    const eventName = selectElement.options[selectElement.selectedIndex].value;
+    
+	this.renderOrderStatus(order);
     //Fire socket event from here
     // Both should occur as a Transaction
     this.fireSocketEvent(order,eventName)

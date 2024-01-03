@@ -8,8 +8,8 @@ import { OrdersComponent } from './components/orders/orders.component';
 
 
 const routes: Routes = [
-  { path:'auth',component:AuthComponent },
   { path:'',component:HomeComponent },
+  { path:'auth',component:AuthComponent },
   { path:'categories',component: CategoriesComponent},
   { path:'products',component: ProductsComponent},
   { path:'orders',component: OrdersComponent}
