@@ -104,7 +104,7 @@
 
 <!-- Product Add Cum Edit Modal  -->
 
-<div id="add-modal"
+<div id="modal"
     class="h-screen fixed top-0 bottom-0 overflow-hidden overflow-y-auto w-5/12 transition-transform ease-in-out duration-250 flex flex-col right-0 z-50 transform translate-x-full bg-neutral-100">
     <div class="h-16 flex justify-between bg-white align-middle p-4">
 
@@ -112,7 +112,7 @@
                 class="mr-4 hover:cursor-pointer text-gray-300">X</span>Product Info</div>
         <div class="flex gap-2 mr-4 justify-end my-auto">
             <button
-                class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs">Create</button>
+                class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs">Save</button>
             <button
                 class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs"
                 (click)="closeModal()">Cancel</button>
@@ -127,7 +127,16 @@
         </div>
         <div class="w-full p-4">
             <!-- <div class="grid grid-cols-2 gap-2"> -->
-            <div>
+            <div id="product-id">
+                <div>
+                    <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Product Id</label>
+                    <div class="relative mt-2 rounded-md shadow-sm">
+                        <input type="text" name="price" id="price" [value]="productInModal.id" disabled 
+                            class="cursor-not-allowed block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5">
                 <div>
                     <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
                     <div class="relative mt-2 rounded-md shadow-sm">
@@ -174,15 +183,14 @@
             Upload Image
         </div>
         <div class="w-full p-4">
-            <div class="h-24 w-24 bg-neutral-100 rounded transform transition-transform active:scale-90 hover:cursor-pointer  "
+            <div #imageUploadDiv class="h-24 w-24 bg-neutral-100 rounded transform transition-transform active:scale-90 hover:cursor-pointer "
                 id="image-upload" (click)="uploadImage()">
-                <!-- <input class="opacity-0 h-20 w-20" id="file_input" type="file"> -->
-                <div class="grid grid-rows-2 align-middle">
+                <input #fileInput type="file" style="display: none;" (change)="handleFileInput($event)" />
+                <div class="grid grid-rows-2 align-middle" id="image-add">
                     <div class=" m-auto w-16  text-center  pt-6">+</div>
                     <div class=" mx-auto w-16 text-center text-xs">Upload</div>
-
                 </div>
-
+                <img src="" alt="" id="image-edit">
             </div>
         </div>
     </div>

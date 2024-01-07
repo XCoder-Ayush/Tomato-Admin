@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Form, FormControl } from '@angular/forms';
 import { Category } from 'src/app/models/category.model';
 import { Product } from 'src/app/models/product.model';
@@ -16,9 +16,9 @@ export class ProductsComponent implements OnInit{
   productList: Product[]=[]
   categoryList: Category[]=[]
   key: string = '';
-
-  categoriesDefault : FormControl = new FormControl();
-  categories : FormControl = new FormControl();
+  @ViewChild('imageUploadDiv') imageUploadDivRef?: ElementRef;
+  selectedCategories: string[]=[];
+  selectedCategoriesDefault: string[]=[];
 
   productInModalDefault:Product = {
     "id":"",
@@ -58,62 +58,75 @@ export class ProductsComponent implements OnInit{
   isSelected(category: Category): boolean {
     return this.productInModal.categories.some(selectedCategory => selectedCategory.id === category.id);
   }
-  selectedCategories: string[]=[];
+
+
 
   openModal(product? : Product){
-    const modal = document.querySelector('#add-modal') as HTMLElement;
+    const modal = document.querySelector('#modal') as HTMLElement;
     console.log(modal.classList);
     modal.classList.add('translate-x-0')
     console.log(modal.classList);
+
+    let imgAdd=document.querySelector('#image-add') as HTMLElement;
+    let imgEdit=document.querySelector('#image-edit') as HTMLImageElement;
+
     if(product==undefined){
       // Add Modal:
       this.productInModal=this.productInModalDefault
-      // this.categories=this.categoriesDefault;
+      this.selectedCategories=this.selectedCategoriesDefault
+      
+      imgEdit.style.display='none';
+      imgAdd.style.display='block';
+
     }else{
       //Edit Modal
       this.productInModal = product;
       this.selectedCategories = this.productInModal.categories.map(category => category.name);
-      // this.categories
-      // console.log(this.productInModal);
-      
-      // let selectedCategories: string[]=[];
-      // this.productInModal.categories.forEach(category=>{
-      //   selectedCategories.push(category.name);
-      // })
-      // this.categories=new FormControl(selectedCategories)      
-      // this.categories=new FormControl(this.productInModal.categories)      
+
+      imgEdit.style.display='block';
+      imgAdd.style.display='none';
+      imgEdit.src = this.productInModal.imageUrl;
+      // if(this.imageUploadDivRef){
+      //   const imageUploadDiv = this.imageUploadDivRef.nativeElement;
+      //   // imageUploadDiv.classList.remove('bg-neutral-100')
+
+      //   while (imageUploadDiv.firstChild) {
+      //     imageUploadDiv.removeChild(imageUploadDiv.firstChild);
+      //   }
+      //   const imgElement = document.querySelector('#actual-image') as HTMLImageElement
+      //   imgElement.src = this.productInModal.imageUrl;
+    
+      //   // imageUploadDiv.appendChild(imgElement);
+      // }
 
     }
 
   }
 
   closeModal(){
-    const modal = document.querySelector('#add-modal') as HTMLElement;
+    const modal = document.querySelector('#modal') as HTMLElement;
     console.log(modal.classList);
     modal.classList.remove('translate-x-0')
     console.log(modal.classList);
   }
+  @ViewChild('fileInput') fileInputRef?: ElementRef;
+  private allowClick = true;
+  uploadImage() {
+    if (this.allowClick && this.fileInputRef) {
+      const fileInput = this.fileInputRef.nativeElement;
+      fileInput.click();
+    }
+  }
 
-  uploadImage(){
-    const imageUploadDiv = document.querySelector('#image-upload') as HTMLElement;
-    var fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.style.display = 'none';
-    imageUploadDiv.appendChild(fileInput);
-    fileInput.click();
-    fileInput.addEventListener('change', function () {
-      const files = fileInput.files as any;
-      if(files && files.length > 0){
-          var selectedFile = files[0];
-        if (selectedFile) {
-          alert('Selected file: ' + selectedFile.name);
-        }
-        imageUploadDiv.removeChild(fileInput);
+  handleFileInput(event: any) {
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      const selectedFile = files[0];
+      if (selectedFile) {
+        alert('Selected file: ' + selectedFile.name);
       }
-      else{
-        return;
-      }
-    });
+    }
+    this.allowClick = true; // Allow the click again after handling the file input
   }
 
   showPublishedProducts(){
