@@ -92,7 +92,7 @@
                         {{product.stars}}
                     </td>
                     <td scope="col" class="px-6 py-3 font-normal ">
-                        <button class="text-red-900 ml-3" (click)="openModal()">Edit</button>
+                        <button class="text-red-900 ml-3" (click)="openModal(product)">Edit</button>
                     </td>
                 </tr>
             </tbody>
@@ -101,11 +101,10 @@
 
 </div>
 
-<!-- <app-product-modal  [incomingProduct]="this.currentProduct" id="modal" class="hidden"></app-product-modal> -->
 
-<!-- Product Modal  -->
+<!-- Product Add Cum Edit Modal  -->
 
-<div id="gg"
+<div id="add-modal"
     class="h-screen fixed top-0 bottom-0 overflow-hidden overflow-y-auto w-5/12 transition-transform ease-in-out duration-250 flex flex-col right-0 z-50 transform translate-x-full bg-neutral-100">
     <div class="h-16 flex justify-between bg-white align-middle p-4">
 
@@ -128,34 +127,38 @@
         </div>
         <div class="w-full p-4">
             <!-- <div class="grid grid-cols-2 gap-2"> -->
+            <div>
                 <div>
-                    <div>
-                        <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
-                        <div class="relative mt-2 rounded-md shadow-sm">
-                            <input type="text" name="price" id="price"
-                                class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                        </div>
+                    <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                    <div class="relative mt-2 rounded-md shadow-sm">
+                        <input type="text" name="price" id="price" [value]="productInModal.name"
+                            class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
-                <div class="mt-5">
-                    <div>
-                        <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Categories</label>
-                        <div class="relative mt-2 rounded-md shadow-sm">
-                            <mat-form-field style="width: 100%;" appearance="outline">
-                                <mat-select [formControl]="categories" multiple>
-                                  <mat-option *ngFor="let category of categoryList" [value]="category">{{ category.name }}</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
+            </div>
+            <div class="mt-5">
+                <div>
+                    <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Categories</label>
+                    <div class="relative mt-2 rounded-md shadow-sm">
+                        <mat-form-field style="width: 100%;" appearance="outline">
+                            <mat-select  multiple [(ngModel)]="selectedCategories" 
+                            (ngModelChange)="selectedCategories" name="selectedCategories">
+                              <mat-option *ngFor="let category of categoryList" [value]="category.name">
+                                {{ category.name }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          
                     </div>
                 </div>
+            </div>
             <!-- </div> -->
 
             <div>
                 <div class="mt-5 mb-10">
                     <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
                     <div class="relative mt-2 rounded-md shadow-sm">
-                        <input type="text" name="price" id="price"
+                        <input type="text" name="price" id="price" [value]="productInModal.description"
                             class="overflow-x-hidden overflow-y-auto w-full h-16 rounded-md border-0 py-1 px-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
@@ -196,7 +199,7 @@
                     <div>
                         <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Price</label>
                         <div class="relative mt-2 rounded-md shadow-sm">
-                            <input type="text" name="price" id="price"
+                            <input type="text" name="price" id="price" [value]="productInModal.price"
                                 class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
@@ -206,7 +209,7 @@
                         <label for="Cooking_time" class="block text-sm font-medium leading-6 text-gray-900">Cooking
                             Time</label>
                         <div class="relative mt-2 rounded-md shadow-sm">
-                            <input type="text" name="Cooking_time" id="Cooking_time"
+                            <input type="text" name="Cooking_time" id="Cooking_time" [value]="productInModal.cookTime"
                                 class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
@@ -219,7 +222,7 @@
                     <div>
                         <label for="stars" class="block text-sm font-medium leading-6 text-gray-900">Stars</label>
                         <div class="relative mt-2 rounded-md shadow-sm">
-                            <input type="text" name="stars" id="stars"
+                            <input type="text" name="stars" id="stars" [value]="productInModal.stars"
                                 class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
@@ -228,7 +231,7 @@
                     <div>
                         <label for="sale_perc" class="block text-sm font-medium leading-6 text-gray-900">Sale(%)</label>
                         <div class="relative mt-2 rounded-md shadow-sm">
-                            <input type="text" name="sale_perc" id="sale_perc"
+                            <input type="text" name="sale_perc" id="sale_perc" [value]="productInModal.onSale"
                                 class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
@@ -253,4 +256,3 @@
     </div>
 
 </div>
-

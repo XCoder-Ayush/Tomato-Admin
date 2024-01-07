@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Form, FormControl } from '@angular/forms';
 import { Category } from 'src/app/models/category.model';
 import { Product } from 'src/app/models/product.model';
 import { CategoryService } from 'src/app/services/category/category.service';
@@ -12,17 +12,41 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class ProductsComponent implements OnInit{
 
   currentProduct?:Product;
-  // REST API Call
   productListOrg : Product[]=[]
   productList: Product[]=[]
   categoryList: Category[]=[]
+  key: string = '';
 
-  categories = new FormControl('');
-  // toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  categoriesDefault : FormControl = new FormControl();
+  categories : FormControl = new FormControl();
 
-  constructor(private productService : ProductService,
-    private categoryService : CategoryService){
+  productInModalDefault:Product = {
+    "id":"",
+    "price": 0,
+    "name": "",
+    "categories": [],
+    "imageUrl": "",
+    "cookTime": 0,
+    "description": "",
+    "stars": 0,
+    "onSale": 0,
+    "published": 0
   }
+  productInModal:Product= {
+    "id":"",
+    "price": 0,
+    "name": "",
+    "categories": [],
+    "imageUrl": "",
+    "cookTime": 0,
+    "description": "",
+    "stars": 0,
+    "onSale": 0,
+    "published": 0
+  }
+  constructor(
+    private productService : ProductService,
+    private categoryService : CategoryService){}
 
   async ngOnInit(): Promise<void> {
       this.productList=await this.productService.getProducts();
@@ -30,24 +54,43 @@ export class ProductsComponent implements OnInit{
 
       this.categoryList=await this.categoryService.getCategories();
   }
-  // openModal(product : Product){
-  //   const modal=document.querySelector('#modal') as HTMLElement;
-  //   console.log(modal.classList);
-  //   modal.classList.remove('hidden')
-  //   console.log(modal.classList);
-  //   this.currentProduct=product;
-  //   // this.categoryNameEmmiter?.emit(categoryName)
-  // }
-  closeModal(){
-    const modal = document.querySelector('#gg') as HTMLElement;
-    console.log(modal.classList);
-    modal.classList.remove('translate-x-0')
-    console.log(modal.classList);
+
+  isSelected(category: Category): boolean {
+    return this.productInModal.categories.some(selectedCategory => selectedCategory.id === category.id);
   }
-  openModal(){
-    const modal = document.querySelector('#gg') as HTMLElement;
+  selectedCategories: string[]=[];
+
+  openModal(product? : Product){
+    const modal = document.querySelector('#add-modal') as HTMLElement;
     console.log(modal.classList);
     modal.classList.add('translate-x-0')
+    console.log(modal.classList);
+    if(product==undefined){
+      // Add Modal:
+      this.productInModal=this.productInModalDefault
+      // this.categories=this.categoriesDefault;
+    }else{
+      //Edit Modal
+      this.productInModal = product;
+      this.selectedCategories = this.productInModal.categories.map(category => category.name);
+      // this.categories
+      // console.log(this.productInModal);
+      
+      // let selectedCategories: string[]=[];
+      // this.productInModal.categories.forEach(category=>{
+      //   selectedCategories.push(category.name);
+      // })
+      // this.categories=new FormControl(selectedCategories)      
+      // this.categories=new FormControl(this.productInModal.categories)      
+
+    }
+
+  }
+
+  closeModal(){
+    const modal = document.querySelector('#add-modal') as HTMLElement;
+    console.log(modal.classList);
+    modal.classList.remove('translate-x-0')
     console.log(modal.classList);
   }
 
@@ -83,7 +126,7 @@ export class ProductsComponent implements OnInit{
       this.productList=this.productListOrg;
     }
   }
-  key: string = '';
+  
   filterProductItems(searchKey: any) {
     console.log(searchKey);
     
