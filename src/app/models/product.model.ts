@@ -1,9 +1,14 @@
+import { Category } from "./category.model";
+
 export interface Product{
-    name: string,
-    sales_disc: number,
-    createdAt: string,
-    category: string,
-    status:string,
+    id: string,
     price: number,
-    stars: number
+    name: string,
+    categories: Category[],
+    imageUrl: string,
+    cookTime: number,
+    description: string,
+    stars: number,
+    onSale:number,
+    published:number,
 }

@@ -20,3 +20,11 @@
     -ms-transform: none;
     transform: none;
 } */
+::ng-deep .mat-select-panel {
+    background-color: white;
+  }
+  
+  /* Optionally, set the text color to black */
+  ::ng-deep .mat-option {
+    color: black;
+  }

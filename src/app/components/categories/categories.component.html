@@ -11,7 +11,7 @@
           </div>
       </div>
       <div class=" align-middle text-right px-5 py-5">
-          <button class="button bg-red-500 px-5 py-1 h-8 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-sm">+ Create Product</button>
+          <button class="button bg-red-500 px-5 py-1 h-8 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-sm" (click)="g()">+ Create Category</button>
       </div>
   </div>
 </div>
@@ -21,10 +21,10 @@
       <thead class="text-xs text-black uppercase bg-neutral-100">
           <tr>
               <th scope="col" class="px-6 py-3 ">
-                  Category name
+                  Category ID
               </th>
               <th scope="col" class="px-6 py-3 ">
-                 Created At
+                 Category Name
               </th>
               <th scope="col" class="px-6 py-3">
                   Count
@@ -34,13 +34,13 @@
       <tbody class="bg-white">
           <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-200 border-white-150 dark:border-white-300 text-xs font-thin " *ngFor="let category of categoryList">
               <th scope="col" class="px-6 py-3  font-normal ">
-                  {{category.name}}
+                  {{category.id}}
               </th>
               <th scope="col" class="px-6 py-3 font-normal ">
-                  {{category.createdAt}}
+                  {{category.name}}
               </th>
               <th scope="col" class="px-6 py-3 font-normal ">  
-                  {{category.count}}
+                  3
               </th>
           </tr>
       </tbody>
@@ -50,18 +50,12 @@
 </div>
 
 
-
-<app-category-modal [categoryName]="this.currentCategoryName" id="modal" class="hidden"></app-category-modal>
-
-
-<button (click)="g()">Open</button>
-<button (click)="f()">Close</button>
 <div id="gg" class="h-screen fixed top-0 bottom-0 overflow-hidden overflow-y-auto w-5/12 transition-transform ease-in-out duration-250 flex flex-col right-0 z-50 transform translate-x-full bg-neutral-100">
     <div class="h-16 flex justify-between bg-white align-middle p-4">
-        <div class="my-auto ml-4 font-semibold "><span class="mr-4 text-gray-300">X</span>Category Info</div>
+        <div class="my-auto ml-4 font-semibold "><span class="mr-4 text-gray-300 hover:cursor-pointer" (click)="f()">X</span>Category Info</div>
         <div class="flex gap-2 mr-4 justify-end my-auto">
-            <button class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs">Create</button>
-            <button class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs">Cancel</button>
+            <button class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs" (click)="addCategory()">Create</button>
+            <button class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs" (click)="f()">Cancel</button>
         </div>
     </div> 
     <div class="m-6 bg-white border-#0000ff-800 rounded">
@@ -73,7 +67,7 @@
                 <div class="mt-1 ">
                     <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
                     <div class="relative mt-2 rounded-md shadow-sm">
-                      <input type="text" name="price" id="price" class="overflow-x-hidden overflow-y-auto w-full h-10 rounded-md border-0 py-1 px-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                      <input type="text" name="price" id="category-input" class="overflow-x-hidden overflow-y-auto w-full h-10 rounded-md border-0 py-1 px-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
                     </div>
                   </div>
             </div>

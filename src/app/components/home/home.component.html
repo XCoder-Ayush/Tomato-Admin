@@ -4,17 +4,25 @@
 <div class="flex flex-cols-2">
     <div class="w-full ">
          <div class="flex flex-row mb-10">
-                <div class="elative overflow-x-auto sm:rounded-lg ml-10 mr-5 bg-white shadow basis-1/2 w-full">
+                <div class="elative overflow-x-auto sm:rounded-lg ml-10 mr-5 bg-white shadow basis-1/2 w-full h-16">
                     <div class="flex justify-between">
-                        <div class="flex align-middle bg-white-500 px-5 py-5 text-sm gap-6 ">
-                            Count
+                        <div class="flex align-middle bg-white-500 px-5 py-5 text-sm gap-6 font-normal text-neutral-500">
+                            Total orders
+                        </div>
+                        <div class="flex align-middle bg-white-500 px-5 py-5 text-sm font-semibold">
+                            <h3>{{orderList.length}}</h3>
                         </div>
                     </div>
                 </div>
-                <div class="elative overflow-x-auto sm:rounded-lg ml-5 mr-10 bg-white shadow basis-1/2 w-full">
+                <div class="elative overflow-x-auto sm:rounded-lg ml-5 mr-10 bg-white shadow basis-1/2 w-full h-16">
                     <div class="flex justify-between">
-                        <div class="flex align-middle bg-white-500 px-5 py-5 text-sm gap-6 ">
-                            kuch bhi
+                        <div class="flex justify-between">
+                            <div class="flex align-middle bg-white-500 px-5 py-5 text-sm gap-6 font-normal text-neutral-500">
+                                Sales
+                            </div>
+                            <div class="flex align-middle bg-white-500 px-auto  py-5 text-sm font-semibold">
+                                <h3>₹{{getTotalSales()}}</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -25,11 +33,8 @@
     
                     <div class="flex justify-between">
                         <div class="flex align-middle bg-white-500 px-5 py-5 text-sm gap-6 ">
-                            sales
+                            Stats
                         </div >
-                        <div class="flex align-middle bg-white-500 px-5 py-5 text-sm">
-                            70000
-                        </div>
                     </div>
                 </div>
             </div>
@@ -52,25 +57,33 @@
                         </th>
                     </tr>
                 </thead>
-                <!-- <tbody class="bg-white">
-                    <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-200 border-white-150 dark:border-white-300 text-xs font-thin " *ngFor="let category of categoryList">
-                        <th scope="col" class="px-6 py-3  font-normal ">
-                            {{category.name}}
+                <tbody class="bg-white">
+                    <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-200 border-white-150 dark:border-white-300 text-xs font-thin " *ngFor="let order of orderList">
+                        <th scope="col" class="px-6 py-3 font-normal text-red-800">
+                            {{order.orderId}}
                         </th>
                         <th scope="col" class="px-6 py-3 font-normal ">
-                            {{category.createdAt}}
-                        </th>
-                        <th scope="col" class="px-6 py-3 font-normal ">  
-                            {{category.count}}
+                            {{order.amount}}
                         </th>
                         <th scope="col" class="px-6 py-3 font-normal ">
-                            <button class="text-red-900">Edit</button>
+                            <div id="order-statuses-{{order.orderId}}" [ngStyle]="getDynamicStyles(order)"
+
+                                class="border-2 rounded text-xs w-30 px-2 py-1 text-center">
+                                {{order.status}}
+                        </div>
                         </th>
                     </tr>
-                </tbody> -->
+                    <tr>
+                        <th class="font-normal text-green-800 px-8 py-4 text-xs">
+                            <a href="/orders" class="pt-10">See all order</a>
+                        </th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </tbody>
             </table>
         </div>
       
     </div>
 </div>
-  

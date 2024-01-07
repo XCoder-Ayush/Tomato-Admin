@@ -1,44 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Category } from 'src/app/models/category.model';
 import { Product } from 'src/app/models/product.model';
+import { CategoryService } from 'src/app/services/category/category.service';
+import { ProductService } from 'src/app/services/product/product.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit{
 
   currentProduct?:Product;
   // REST API Call
-  productList : Product[]=[
-    {
-      name: 'Burgiir',
-      sales_disc: 10,
-      createdAt: '10.09.20',
-      category: 'Veg',
-      status: 'Not Published',
-      price: 100,
-      stars: 0
-    },
-    {
-      name: 'Burgiir',
-      sales_disc: 10,
-      createdAt: '10.09.20',
-      category: 'Veg',
-      status: 'Not Published',
-      price: 100,
-      stars: 0
-    },
-    {
-      name: 'Burgiir',
-      sales_disc: 10,
-      createdAt: '10.09.20',
-      category: 'Veg',
-      status: 'Published',
-      price: 100,
-      stars: 0
-    },
-    
-  ]
+  productListOrg : Product[]=[]
+  productList: Product[]=[]
+  categoryList: Category[]=[]
+
+  categories = new FormControl('');
+  // toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+
+  constructor(private productService : ProductService,
+    private categoryService : CategoryService){
+  }
+
+  async ngOnInit(): Promise<void> {
+      this.productList=await this.productService.getProducts();
+      this.productListOrg=this.productList;
+
+      this.categoryList=await this.categoryService.getCategories();
+  }
   // openModal(product : Product){
   //   const modal=document.querySelector('#modal') as HTMLElement;
   //   console.log(modal.classList);
@@ -81,4 +72,28 @@ export class ProductsComponent {
       }
     });
   }
+
+  showPublishedProducts(){
+    const publishBox=document.querySelector('#publish-box') as HTMLInputElement;
+    if(publishBox.checked){
+      this.productList=this.productListOrg.filter(product=>{
+        return product.published==1;
+      })
+    }else{
+      this.productList=this.productListOrg;
+    }
+  }
+  key: string = '';
+  filterProductItems(searchKey: any) {
+    console.log(searchKey);
+    
+    this.productList = this.productListOrg.filter((item) => {
+      return item.name
+        .toLowerCase()
+        .replace(/\s+/g, '')
+        .includes(searchKey.toLowerCase());
+    });
+  }
+
+
 }

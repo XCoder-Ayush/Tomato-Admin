@@ -1,3 +1,4 @@
+import { Address } from "./address.model";
 export interface User{
     userId:string;
     firstName:string;
@@ -6,4 +7,6 @@ export interface User{
     password:string;
     about:string;
     role:string;
+    addresses: Address[];
+    status:string;
 }
