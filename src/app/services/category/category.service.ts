@@ -29,4 +29,9 @@ export class CategoryService {
       console.log(err);
     })
   }
+
+  async getCategoryCountById(id:string){
+    const resp=await lastValueFrom(this.apiService.getCategoryCountById(id));
+    return resp;
+  }
 }

@@ -11,11 +11,13 @@ export class OrdersComponent implements OnInit {
   constructor(private apiService : ApiService,private socketService: SocketService){}
   
   orderList:Order[] = [];
+  orderListOrg:Order[] = [];
 
   ngOnInit(): void {
     this.apiService.getAllOrders().subscribe(orders=>{
       console.log(orders);
       this.orderList=orders
+      this.orderListOrg=orders
     })
    
      this.socketService.getPlacedOrder().subscribe((order)=>{
@@ -23,6 +25,7 @@ export class OrdersComponent implements OnInit {
          // Append to DOM
          console.log('Before Appending Order');        
          this.orderList.push(order)
+         this.orderListOrg=this.orderList;
          console.log(this.orderList);
         
        })
@@ -44,6 +47,17 @@ export class OrdersComponent implements OnInit {
 
       // });  
     
+  }
+  key:string=''
+  filterProductItems(searchKey: any) {
+    console.log(searchKey);
+    
+    this.orderList = this.orderListOrg.filter((item) => {
+      return item.orderId
+        .toLowerCase()
+        .replace(/\s+/g, '')
+        .includes(searchKey.toLowerCase());
+    });
   }
 
   currentOrder?: Order;

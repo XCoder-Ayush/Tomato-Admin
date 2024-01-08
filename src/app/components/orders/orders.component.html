@@ -6,7 +6,7 @@
     <div class="flex justify-between">
         <div class="flex align-middle bg-white-500 px-5 py-5 text-sm gap-6 ">
             <div>
-                <input type="text" id="Type" aria-label="Your type"
+                <input type="text" id="Type" aria-label="Your type" [(ngModel)]="key" (ngModelChange)="filterProductItems($event)"
                     class="bg-white-800 align-middle px-5 py-1 h-8 text-#0000ff-700 hover:text-black  border border-#0000ff-500 hover:border-transparent rounded"
                     value="" placeholder="Enter type">
             </div>
@@ -130,8 +130,8 @@
                     </div>
                     <div>
                         <div>
-                            <label for="Cooking_time" class="block text-sm font-medium leading-6 text-gray-900">Status
-                            </label>
+                            <!-- <label for="Cooking_time" class="block text-sm font-medium leading-6 text-gray-900">Status
+                            </label> -->
                             <!-- <div class="relative mt-2 rounded-md shadow-sm">
                                 <select id="order-statuses-{{order.orderId}}" (change)="changeOrderStatus(order)"
                                     class="border-2 rounded border-green-300 bg-green-200 text-green-800 text-xs w-30 px-2 py-1">

@@ -124,6 +124,9 @@ export class ProductsComponent implements OnInit{
       const selectedFile = files[0];
       if (selectedFile) {
         alert('Selected file: ' + selectedFile.name);
+        // Save to Cloudinary and get image url
+
+        // After getting img url show it in div
       }
     }
     this.allowClick = true; // Allow the click again after handling the file input
@@ -151,5 +154,36 @@ export class ProductsComponent implements OnInit{
     });
   }
 
+  onSave(){
+    if(this.productInModal.name=='' || this.productInModal.categories.length==0 || this.productInModal.price==0){
+      alert('Not Satisfied')
+      return;
+    }
+    if(this.productInModal.id==''){
+      this.addProduct();
+    }else{
+      this.updateProduct();
+    }
+  }
 
+  addProduct(){
+    // Update With Latest Values In Input Fields
+    // this.productInModal.name=document.getElementById('')
+    if((document.getElementById('modal-publish-check') as HTMLInputElement).checked){
+      this.productInModal.published=1;
+    }else{
+      this.productInModal.published=0;
+    }
+
+    this.productService.addProduct(this.productInModal);
+  }
+
+  updateProduct(){
+    if((document.getElementById('modal-publish-check') as HTMLInputElement).checked){
+      this.productInModal.published=1;
+    }else{
+      this.productInModal.published=0;
+    }
+    this.productService.updateProduct(this.productInModal);
+  }
 }

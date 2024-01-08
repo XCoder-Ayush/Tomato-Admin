@@ -14,13 +14,31 @@ export class CategoriesComponent implements OnInit{
   // REST API Call
   categoryList : Category[]=[
   ]
+  categoryListOrg : Category[]=[
+  ]
 
   constructor(private categoryService : CategoryService){
-
   }
+  categoryCountMap: Map<string, number> = new Map();
   async ngOnInit(): Promise<void> {
       this.categoryList=await this.categoryService.getCategories();
+      this.categoryListOrg=this.categoryList
 
+      await Promise.all(this.categoryList.map(async (category) => {
+        const count = await this.categoryService.getCategoryCountById(category.id);
+        this.categoryCountMap.set(category.id, count);
+      }));
+  }
+  key : string='';
+  filterCategoryItems(searchKey: any) {
+    console.log(searchKey);
+    
+    this.categoryList = this.categoryListOrg.filter((item) => {
+      return item.name
+        .toLowerCase()
+        .replace(/\s+/g, '')
+        .includes(searchKey.toLowerCase());
+    });
   }
   // Single Responsibility
   openModal(categoryName : string){

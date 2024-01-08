@@ -10,12 +10,21 @@
                     class="bg-white-800 align-middle px-5 py-1 h-8 text-#0000ff-700 hover:text-black  border border-#0000ff-500 hover:border-transparent rounded"
                     value="" placeholder="Enter type">
             </div>
+            <div class="align-middle px-5 py-1 h-8">
+                <label class="relative inline-flex items-center me-5 cursor-pointer">
+                    <input type="checkbox" value="" class="sr-only peer" unchecked>
+                    <div
+                        class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600">
+                    </div>
+                    <span class="ms-3 text-xs font-medium">Show Blocked Users</span>
+                </label>
+            </div>
         </div>
-        <div class=" align-middle text-right px-5 py-5">
+        <!-- <div class=" align-middle text-right px-5 py-5">
             <button
                 class="button bg-red-500 px-5 py-1 h-8 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-sm">+
                 Edit User</button>
-        </div>
+        </div> -->
     </div>
 </div>
 
@@ -74,6 +83,8 @@
         <div class="my-auto ml-4 font-semibold"><span class="mr-4 text-gray-300 hover:cursor-pointer"
                 (click)="closeModal()">X</span>User Info</div>
         <div class="flex gap-2 mr-4 justify-end my-auto">
+            <button
+                class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs">Save</button>
             <button
                 class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs">Cancel</button>
         </div>

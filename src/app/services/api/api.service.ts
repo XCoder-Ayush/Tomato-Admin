@@ -45,4 +45,19 @@ export class ApiService {
     const URL = `http://localhost:8080/category`;
     return this.http.post<Category>(URL,category)
   }
+
+  getCategoryCountById(id: string):Observable<number>{
+    const URL = `http://localhost:8080/category/${id}`;
+    return this.http.get<number>(URL)
+  }
+
+  addProduct(product : Product):Observable<Product>{
+    const URL = `http://localhost:8080/food/add`;
+    return this.http.post<Product>(URL,product)
+  }
+  
+  updateProduct(product : Product):Observable<Product>{
+    const URL = `http://localhost:8080/food/update`;
+    return this.http.put<Product>(URL,product)
+  }
 }

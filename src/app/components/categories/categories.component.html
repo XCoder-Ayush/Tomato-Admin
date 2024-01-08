@@ -7,7 +7,7 @@
   <div class="flex justify-between">
       <div class="flex align-middle bg-white-500 px-5 py-5 text-sm gap-6 ">
           <div>
-              <input type="text" id="Type" aria-label="Your type" class="bg-white-800 align-middle px-5 py-1 h-8 text-#0000ff-700 hover:text-black  border border-#0000ff-500 hover:border-transparent rounded" value="" placeholder="Enter type">
+              <input type="text" id="Type" [(ngModel)]="key" (ngModelChange)="filterCategoryItems($event)" aria-label="Your type" class="bg-white-800 align-middle px-5 py-1 h-8 text-#0000ff-700 hover:text-black  border border-#0000ff-500 hover:border-transparent rounded" value="" placeholder="Enter type">
           </div>
       </div>
       <div class=" align-middle text-right px-5 py-5">
@@ -40,7 +40,7 @@
                   {{category.name}}
               </th>
               <th scope="col" class="px-6 py-3 font-normal ">  
-                  3
+                {{categoryCountMap.get(category.id)}}
               </th>
           </tr>
       </tbody>
