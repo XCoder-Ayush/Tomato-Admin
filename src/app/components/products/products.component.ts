@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Form, FormControl } from '@angular/forms';
+import * as Noty from 'noty';
 import { Category } from 'src/app/models/category.model';
 import { Product } from 'src/app/models/product.model';
 import { CategoryService } from 'src/app/services/category/category.service';
@@ -60,18 +61,20 @@ export class ProductsComponent implements OnInit{
   }
 
 
-
+  imageInModal?: File
   openModal(product? : Product){
     const modal = document.querySelector('#modal') as HTMLElement;
-    console.log(modal.classList);
+    // console.log(modal.classList);
     modal.classList.add('translate-x-0')
-    console.log(modal.classList);
+    // console.log(modal.classList);
 
     let imgAdd=document.querySelector('#image-add') as HTMLElement;
-    let imgEdit=document.querySelector('#image-edit') as HTMLImageElement;
+    let imgEdit=document.querySelector('#image-container') as HTMLImageElement;
 
     if(product==undefined){
       // Add Modal:
+      console.log(1);
+      
       this.productInModal=this.productInModalDefault
       this.selectedCategories=this.selectedCategoriesDefault
       
@@ -83,8 +86,8 @@ export class ProductsComponent implements OnInit{
       this.productInModal = product;
       this.selectedCategories = this.productInModal.categories.map(category => category.name);
 
-      imgEdit.style.display='block';
       imgAdd.style.display='none';
+      imgEdit.style.display='block';
       imgEdit.src = this.productInModal.imageUrl;
       // if(this.imageUploadDivRef){
       //   const imageUploadDiv = this.imageUploadDivRef.nativeElement;
@@ -105,10 +108,10 @@ export class ProductsComponent implements OnInit{
 
   closeModal(){
     const modal = document.querySelector('#modal') as HTMLElement;
-    console.log(modal.classList);
     modal.classList.remove('translate-x-0')
-    console.log(modal.classList);
+    this.productInModal=this.productInModalDefault
   }
+
   @ViewChild('fileInput') fileInputRef?: ElementRef;
   private allowClick = true;
   uploadImage() {
@@ -123,10 +126,30 @@ export class ProductsComponent implements OnInit{
     if (files && files.length > 0) {
       const selectedFile = files[0];
       if (selectedFile) {
-        alert('Selected file: ' + selectedFile.name);
-        // Save to Cloudinary and get image url
+      console.log(3);
+      this.imageInModal=selectedFile;
+        // alert('Selected file: ' + selectedFile.name);
+      (document.getElementById('image-add') as HTMLElement).style.display='none';
 
-        // After getting img url show it in div
+        // Show image in div
+        // Save to Cloudinary and get image url
+      const parentDiv = document.getElementById('image-upload') as HTMLImageElement;
+      const imgElement=document.getElementById('image-container') as HTMLImageElement;
+
+      // imageContainer.remove();
+
+      // const imgElement = document.createElement('img');
+      // imgElement.id='image-container'
+      imgElement.src = URL.createObjectURL(selectedFile);
+      imgElement.alt = 'Something Went Wrong'; 
+      imgElement.style.width='100%'
+      imgElement.style.height='100%'
+      imgElement.style.display='block'
+
+
+      // Append the img element to the parent div
+      // parentDiv.appendChild(imgElement);
+
       }
     }
     this.allowClick = true; // Allow the click again after handling the file input
@@ -155,6 +178,17 @@ export class ProductsComponent implements OnInit{
   }
 
   onSave(){
+    let updatedCategoryList:Category[]=[];
+    this.categoryList.forEach((category)=>{
+      this.selectedCategories.forEach((categoryName)=>{
+        if(category.name==categoryName){
+          updatedCategoryList.push(category);
+        }
+      })
+    })
+
+    this.productInModal.categories=updatedCategoryList;
+
     if(this.productInModal.name=='' || this.productInModal.categories.length==0 || this.productInModal.price==0){
       alert('Not Satisfied')
       return;
@@ -168,22 +202,43 @@ export class ProductsComponent implements OnInit{
 
   addProduct(){
     // Update With Latest Values In Input Fields
-    // this.productInModal.name=document.getElementById('')
+
     if((document.getElementById('modal-publish-check') as HTMLInputElement).checked){
       this.productInModal.published=1;
     }else{
       this.productInModal.published=0;
     }
+    
+    this.productService.addProduct(this.productInModal,this.imageInModal);
+    new Noty({
+      layout: 'topRight',
+      type: 'success',
+      text: 'Product Saved In Inventory',
+      theme: 'metroui',
+      timeout: 3000,
+    }).show();
+    this.closeModal();
 
-    this.productService.addProduct(this.productInModal);
   }
 
   updateProduct(){
+    // this.productInModal.categories=this.selectedCategories;
+
     if((document.getElementById('modal-publish-check') as HTMLInputElement).checked){
       this.productInModal.published=1;
     }else{
       this.productInModal.published=0;
     }
-    this.productService.updateProduct(this.productInModal);
+    // console.log(this.productInModal);
+    this.productService.updateProduct(this.productInModal,this.imageInModal);
+    new Noty({
+      layout: 'topLeft',
+      type: 'success',
+      text: 'Product Updated In Inventory',
+      theme: 'metroui',
+      timeout: 3000,
+    }).show();
+    this.closeModal();
+
   }
 }

@@ -15,14 +15,14 @@ export class ProductService {
     return products;
   }
 
-  addProduct(product: Product){
-    this.apiService.addProduct(product).subscribe(resp=>{
+  addProduct(product: Product,image : File|undefined){
+    this.apiService.addProduct(product,image).subscribe(resp=>{
       console.log(resp);
     })
   }
 
-  updateProduct(product : Product){
-    this.apiService.updateProduct(product).subscribe(resp=>{
+  updateProduct(product : Product,image : File|undefined){
+    this.apiService.updateProduct(product,image).subscribe(resp=>{
       console.log(resp);
     })
   }

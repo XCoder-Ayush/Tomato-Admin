@@ -112,7 +112,8 @@
                 class="mr-4 hover:cursor-pointer text-gray-300">X</span>Product Info</div>
         <div class="flex gap-2 mr-4 justify-end my-auto">
             <button
-                class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs" (click)="onSave()">Save</button>
+                class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs"
+                (click)="onSave()">Save</button>
             <button
                 class="button bg-red-500 px-4 py-1 h-7 align-middle text-white border border-#0000ff-500 hover:border-transparent rounded font-normal text-xs"
                 (click)="closeModal()">Cancel</button>
@@ -131,7 +132,7 @@
                 <div>
                     <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Product Id</label>
                     <div class="relative mt-2 rounded-md shadow-sm">
-                        <input type="text" name="price" id="price"  [value]="productInModal.id" disabled 
+                        <input type="text" name="price" id="price" [value]="productInModal.id" disabled
                             class="cursor-not-allowed block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
@@ -140,7 +141,8 @@
                 <div>
                     <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
                     <div class="relative mt-2 rounded-md shadow-sm">
-                        <input type="text" name="price" id="price" [(ngModel)]="productInModal.name" [value]="productInModal.name"
+                        <input type="text" name="price" id="price" [(ngModel)]="productInModal.name"
+                            [value]="productInModal.name"
                             class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
@@ -150,14 +152,14 @@
                     <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Categories</label>
                     <div class="relative mt-2 rounded-md shadow-sm">
                         <mat-form-field style="width: 100%;" appearance="outline">
-                            <mat-select  multiple [(ngModel)]="selectedCategories" 
-                            (ngModelChange)="selectedCategories" name="selectedCategories">
-                              <mat-option *ngFor="let category of categoryList" [value]="category.name">
-                                {{ category.name }}
-                              </mat-option>
+                            <mat-select multiple [(ngModel)]="selectedCategories" (ngModelChange)="selectedCategories"
+                                name="selectedCategories">
+                                <mat-option *ngFor="let category of categoryList" [value]="category.name">
+                                    {{ category.name }}
+                                </mat-option>
                             </mat-select>
-                          </mat-form-field>
-                          
+                        </mat-form-field>
+
                     </div>
                 </div>
             </div>
@@ -167,7 +169,8 @@
                 <div class="mt-5 mb-10">
                     <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
                     <div class="relative mt-2 rounded-md shadow-sm">
-                        <input type="text" name="price" id="price"  [(ngModel)]="productInModal.description" [value]="productInModal.description"
+                        <input type="text" name="price" id="price" [(ngModel)]="productInModal.description"
+                            [value]="productInModal.description"
                             class="overflow-x-hidden overflow-y-auto w-full h-16 rounded-md border-0 py-1 px-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
@@ -183,14 +186,15 @@
             Upload Image
         </div>
         <div class="w-full p-4">
-            <div #imageUploadDiv class="h-24 w-24 bg-neutral-100 rounded transform transition-transform active:scale-90 hover:cursor-pointer "
+            <div #imageUploadDiv
+                class="h-24 w-24 bg-neutral-100 rounded transform transition-transform active:scale-90 hover:cursor-pointer "
                 id="image-upload" (click)="uploadImage()">
                 <input #fileInput type="file" style="display: none;" (change)="handleFileInput($event)" />
                 <div class="grid grid-rows-2 align-middle" id="image-add">
                     <div class=" m-auto w-16  text-center  pt-6">+</div>
                     <div class=" mx-auto w-16 text-center text-xs">Upload</div>
                 </div>
-                <img src="" alt="" id="image-edit">
+                <img src="" alt="" id="image-container">
             </div>
         </div>
     </div>
@@ -207,7 +211,8 @@
                     <div>
                         <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Price</label>
                         <div class="relative mt-2 rounded-md shadow-sm">
-                            <input type="text" name="price" id="price"  [(ngModel)]="productInModal.price" [value]="productInModal.price"
+                            <input type="text" name="price" id="price" [(ngModel)]="productInModal.price"
+                                [value]="productInModal.price"
                                 class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
@@ -217,7 +222,8 @@
                         <label for="Cooking_time" class="block text-sm font-medium leading-6 text-gray-900">Cooking
                             Time</label>
                         <div class="relative mt-2 rounded-md shadow-sm">
-                            <input type="text" name="Cooking_time" id="Cooking_time"  [(ngModel)]="productInModal.cookTime" [value]="productInModal.cookTime"
+                            <input type="text" name="Cooking_time" id="Cooking_time"
+                                [(ngModel)]="productInModal.cookTime" [value]="productInModal.cookTime"
                                 class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
@@ -230,7 +236,8 @@
                     <div>
                         <label for="stars" class="block text-sm font-medium leading-6 text-gray-900">Stars</label>
                         <div class="relative mt-2 rounded-md shadow-sm">
-                            <input type="text" name="stars" id="stars" [value]="productInModal.stars"
+                            <input type="text" name="stars" id="stars" [(ngModel)]="productInModal.stars"
+                                [value]="productInModal.stars"
                                 class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
@@ -239,7 +246,8 @@
                     <div>
                         <label for="sale_perc" class="block text-sm font-medium leading-6 text-gray-900">Sale(%)</label>
                         <div class="relative mt-2 rounded-md shadow-sm">
-                            <input type="text" name="sale_perc" id="sale_perc"  [(ngModel)]="productInModal.onSale" [value]="productInModal.onSale"
+                            <input type="text" name="sale_perc" id="sale_perc" [(ngModel)]="productInModal.onSale"
+                                [value]="productInModal.onSale"
                                 class="block w-full rounded-md border-0 h-8 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
@@ -254,7 +262,8 @@
         </div>
         <div class="w-full p-4">
             <label class="relative inline-flex items-center me-5 cursor-pointer">
-                <input type="checkbox" value="" class="sr-only peer" [checked]="productInModal.published==1" id="modal-publish-check">
+                <input type="checkbox" value="" class="sr-only peer" [checked]="productInModal.published==1"
+                    id="modal-publish-check">
                 <div
                     class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600">
                 </div>
