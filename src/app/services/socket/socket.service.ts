@@ -24,7 +24,7 @@ export class SocketService {
       // console.log(this.userRole);
       // console.log(this.socket);
       this.userRole='ADMIN'
-      this.socket = await io('http://localhost:8081', {
+      this.socket = await io(`${process.env['ORDER_SERVICE_URL']}`, {
         query: { userRole: this.userRole },
       })
 
