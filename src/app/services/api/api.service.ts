@@ -12,17 +12,17 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getAllOrders(): Observable<Order[]> {
-    const URL = `http://localhost:8081/api/orders`;
+    const URL = `${process.env['ORDER_SERVICE_URL']}/api/orders`;
     return this.http.get<Order[]>(URL);
   }
 
   getOrder(orderId: string): Observable<Order> {
-    const URL = `http://localhost:8081/api/orders/${orderId}`;
+    const URL = `${process.env['ORDER_SERVICE_URL']}/api/orders/${orderId}`;
     return this.http.get<Order>(URL);
   }
 
   updateOrderStatus(order: Order, eventName: string): Observable<Order> {
-    const URL = `http://localhost:8081/api/order/status`;
+    const URL = `${process.env['ORDER_SERVICE_URL']}/api/order/status`;
     const body = {
       orderId: order.orderId,
       status: eventName,
@@ -31,27 +31,27 @@ export class ApiService {
   }
 
   getProducts(): Observable<Product[]> {
-    const URL = `http://localhost:8080/food/get`;
+    const URL = `${process.env['MAIN_SERVICE_URL']}/food/get`;
     return this.http.get<Product[]>(URL);
   }
 
   getCategories(): Observable<Category[]> {
-    const URL = `http://localhost:8080/category`;
+    const URL = `${process.env['MAIN_SERVICE_URL']}/category`;
     return this.http.get<Category[]>(URL);
   }
 
   addCategory(category: Category): Observable<Category> {
-    const URL = `http://localhost:8080/category`;
+    const URL = `${process.env['MAIN_SERVICE_URL']}/category`;
     return this.http.post<Category>(URL, category);
   }
 
   getCategoryCountById(id: string): Observable<number> {
-    const URL = `http://localhost:8080/category/${id}`;
+    const URL = `${process.env['MAIN_SERVICE_URL']}/category/${id}`;
     return this.http.get<number>(URL);
   }
 
   addProduct(product: Product, image: File | undefined): Observable<Product> {
-    const URL = 'http://localhost:8080/food/add';
+    const URL = '${process.env.MAIN_SERVICE_URL}/food/add';
     const formData: FormData = new FormData();
     // Create a Blob from the JSON string of 'product'
     const productBlob = new Blob([JSON.stringify(product)], {
@@ -72,7 +72,7 @@ export class ApiService {
     product: Product,
     image: File | undefined
   ): Observable<Product> {
-    const URL = 'http://localhost:8080/food/update';
+    const URL = '${process.env.MAIN_SERVICE_URL}/food/update';
     const formData: FormData = new FormData();
     // Create a Blob from the JSON string of 'product'
     const productBlob = new Blob([JSON.stringify(product)], {
