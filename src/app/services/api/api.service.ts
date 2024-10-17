@@ -4,12 +4,15 @@ import { Observable } from 'rxjs';
 import { Category } from 'src/app/models/category.model';
 import { Order } from 'src/app/models/order.model';
 import { Product } from 'src/app/models/product.model';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
   constructor(private http: HttpClient) {}
+
+  apiGatewayUrl: string = environment.apiGatewayUrl;
+  orderServiceUrl: string = environment.orderServiceUrl;
 
   getAllOrders(): Observable<Order[]> {
     const URL = `http://localhost:8081/api/v1/orders`;
@@ -31,27 +34,27 @@ export class ApiService {
   }
 
   getProducts(): Observable<Product[]> {
-    const URL = `${process.env['MAIN_SERVICE_URL']}/food/get`;
+    const URL = `${this.apiGatewayUrl}/food/get`;
     return this.http.get<Product[]>(URL);
   }
 
   getCategories(): Observable<Category[]> {
-    const URL = `${process.env['MAIN_SERVICE_URL']}/category`;
+    const URL = `${this.apiGatewayUrl}/category`;
     return this.http.get<Category[]>(URL);
   }
 
   addCategory(category: Category): Observable<Category> {
-    const URL = `${process.env['MAIN_SERVICE_URL']}/category`;
+    const URL = `${this.apiGatewayUrl}/category`;
     return this.http.post<Category>(URL, category);
   }
 
   getCategoryCountById(id: string): Observable<number> {
-    const URL = `${process.env['MAIN_SERVICE_URL']}/category/${id}`;
+    const URL = `${this.apiGatewayUrl}/category/${id}`;
     return this.http.get<number>(URL);
   }
 
   addProduct(product: Product, image: File | undefined): Observable<Product> {
-    const URL = '${process.env.MAIN_SERVICE_URL}/food/add';
+    const URL = `${this.apiGatewayUrl}/food/add`;
     const formData: FormData = new FormData();
     // Create a Blob from the JSON string of 'product'
     const productBlob = new Blob([JSON.stringify(product)], {
@@ -72,7 +75,7 @@ export class ApiService {
     product: Product,
     image: File | undefined
   ): Observable<Product> {
-    const URL = '${process.env.MAIN_SERVICE_URL}/food/update';
+    const URL = `${this.apiGatewayUrl}/food/update`;
     const formData: FormData = new FormData();
     // Create a Blob from the JSON string of 'product'
     const productBlob = new Blob([JSON.stringify(product)], {

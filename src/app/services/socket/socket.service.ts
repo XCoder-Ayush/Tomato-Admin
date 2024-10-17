@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
@@ -9,13 +9,16 @@ export class SocketService {
   private socket!: Socket;
   private room: any;
   private userRole: any;
+
+  orderServiceUrl: string = environment.orderServiceUrl;
+
   constructor() {
     // Call an asynchronous method to initialize the service
     this.initializeSocket();
   }
   isSocketInit() {
     console.log(this.socket);
-    return (this.socket?true:false);
+    return this.socket ? true : false;
   }
 
   private async initializeSocket() {
@@ -23,13 +26,13 @@ export class SocketService {
       // this.userRole = await this.loginService.getCurrentUserRole();
       // console.log(this.userRole);
       // console.log(this.socket);
-      this.userRole='ADMIN'
-      this.socket = await io(`${process.env['ORDER_SERVICE_URL']}`, {
+      this.userRole = 'ADMIN';
+      this.socket = await io(`${this.orderServiceUrl}`, {
         query: { userRole: this.userRole },
-      })
+      });
 
       console.log(this.socket);
-      
+
       // Now that the socket is initialized, you can proceed with any further logic here.
       this.room = this.socket.connected;
       console.log(this.room);
@@ -43,14 +46,14 @@ export class SocketService {
     this.room = this.socket.id;
     console.log(this.room);
     console.log(message);
-    this.socket.emit('send-message', message,this.room);
+    this.socket.emit('send-message', message, this.room);
   }
   sendMessageToUser(message: string) {
     console.log('Aise Hee 2');
     this.room = this.socket.id;
     console.log(this.room);
     console.log(message);
-    this.socket.emit('send-message', message,this.room);
+    this.socket.emit('send-message', message, this.room);
   }
 
   onMessageFromServer(): Observable<any> {
@@ -72,7 +75,11 @@ export class SocketService {
     console.log(this.socket);
     this.socket.emit('join-order-room', orderId);
   }
-  updateOrderStatus(orderId: string, newStatus: string, deliveryAgentId: string): void {
+  updateOrderStatus(
+    orderId: string,
+    newStatus: string,
+    deliveryAgentId: string
+  ): void {
     this.socket.emit('order-status', orderId, newStatus, deliveryAgentId);
   }
   getOrderStatusUpdates(): Observable<any> {
@@ -83,12 +90,11 @@ export class SocketService {
     });
   }
 
-  getPlacedOrder():Observable<any> {
+  getPlacedOrder(): Observable<any> {
     return new Observable((observer) => {
       this.socket.on('place-order', (resp) => {
         observer.next(resp);
       });
     });
-
   }
 }
