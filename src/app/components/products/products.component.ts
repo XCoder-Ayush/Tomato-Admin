@@ -218,6 +218,8 @@ export class ProductsComponent implements OnInit{
       timeout: 3000,
     }).show();
     this.closeModal();
+    this.ngOnInit()
+
 
   }
 
@@ -239,6 +241,7 @@ export class ProductsComponent implements OnInit{
       timeout: 3000,
     }).show();
     this.closeModal();
+    this.ngOnInit()
 
   }
 }
