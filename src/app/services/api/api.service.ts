@@ -12,22 +12,22 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getAllOrders(): Observable<Order[]> {
-    const URL = `http://localhost:8081/api/orders`;
+    const URL = `http://localhost:8081/api/v1/orders`;
     return this.http.get<Order[]>(URL);
   }
 
   getOrder(orderId: string): Observable<Order> {
-    const URL = `http://localhost:8081/api/orders/${orderId}`;
+    const URL = `http://localhost:8081/api/v1/orders/${orderId}`;
     return this.http.get<Order>(URL);
   }
 
   updateOrderStatus(order: Order, eventName: string): Observable<Order> {
-    const URL = `http://localhost:8081/api/order/status`;
+    const URL = `http://localhost:8081/api/v1/orders/status`;
     const body = {
       orderId: order.orderId,
       status: eventName,
     };
-    return this.http.post<Order>(URL, body);
+    return this.http.patch<Order>(URL, body);
   }
 
   getProducts(): Observable<Product[]> {

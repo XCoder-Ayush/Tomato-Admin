@@ -72,8 +72,8 @@ export class SocketService {
     console.log(this.socket);
     this.socket.emit('join-order-room', orderId);
   }
-  updateOrderStatus(orderId: string, newStatus: string): void {
-    this.socket.emit('order-status', orderId, newStatus);
+  updateOrderStatus(orderId: string, newStatus: string, deliveryAgentId: string): void {
+    this.socket.emit('order-status', orderId, newStatus, deliveryAgentId);
   }
   getOrderStatusUpdates(): Observable<any> {
     return new Observable((observer) => {
